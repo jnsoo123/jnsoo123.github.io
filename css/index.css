@@ -1,3 +1,7 @@
+.navbar {
+  z-index: 1000;
+}
+
 .container-body {
   max-width: 900px;
 }
@@ -58,4 +62,46 @@
 
 .title-bottom-margin {
   margin-bottom: 40px;
+}
+
+.affix-top {
+
+  background: none;
+  color: white;
+  border: 0;
+  a {
+    color: #fff;
+  }
+  li.active {
+    a {
+      border-bottom: 2px solid #fff;
+      background: none;
+    }
+  }
+
+  li.dropdown a {
+    &:focus {
+      background: none;
+    }
+  }
+  li ul.dropdown-menu {
+    a {
+      color: #000;
+    }
+  }
+}
+
+.affix {
+  top: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)!important;
+  position: fixed;
+  z-index: 1;
+  border-radius: 0px;
+  border: 0;
+}
+
+.affix + .container {
+  padding-top: 84px;
 }
