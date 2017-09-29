@@ -21,4 +21,6 @@ $(function() {
       $(this).removeClass('animated slideInDown');
     });
   });
+
+  $('[data-toggle="tooltip"]').tooltip();
 });
