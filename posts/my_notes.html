@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushRuby.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/modernizr.js"></script>
@@ -46,8 +47,74 @@
             <div class="col-sm-12">
               <div class="profile-info">
                 <div class="profile-title">
+                  <p><b>Creating Release Tags in Github using git-flow</b></p>
+                </div>
+                <small>Notes 002 - Aug 17, 2018</small>
+                <hr />
+                <p>
+                  This can be very useful especially when creating ruby gems/engines so
+                  the user can install your gem/engine via version.
+                </p>
+                <p>Steps in creating release tags:</p>
+                <ul>
+                  <li>
+                    <p>
+                      Make sure you are in <code>develop</code> branch.
+                    </p>
+                    <p>Run <code>$ git flow release start version_x.y.z</code></p>
+                    <p>This will create a branch called release/version_x.y.z</p>
+                  </li>
+                  <li>
+                    <p>Publish the release branch to Github</p>
+                    <p>Run <code>$ git flow release publish version_x.y.z</code></p>
+                    <p>This is so that the branch gets pushed to the git servers
+                    in case of any accident with the proceeding steps.</p>
+                  </li>
+                  <li>
+                    <p>Make version number updates to codebase</p>
+                    <pre class='brush: ruby'>
+                      # lib/foo_bar/version.rb
+                      module FooBar
+                        VERSION = '0.2.0' # From '0.1.0'
+                      end
+                    </pre>
+                    <p>Commit these changes and push to
+                    <code>release/version_x.y.z</code> branch</p>
+                  </li>
+                  <li>
+                    <p>Finish up the release branch. The release branch will merge
+                    this release branch to master and develop to make it ready for
+                    deployment.</p>
+                    <p>Run <code>$ git flow release finish version_x.y.z</code></p>
+                    <p>When prompted to give a tag for this branch, just use it
+                    <code>version_x.y.z</code>. After this, push the tags to github.</p>
+                    <p>Run <code>$ git push --tags</code></p>
+                  </li>
+                  <li>
+                    <p>Push master and develop to github</p>
+                    <p><code>git checkout develop</code></p>
+                    <p><code>git push origin develop</code></p>
+                    <p><code>git checkout master</code></p>
+                    <p><code>git push origin master</code></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-body">
+      <div class="profile-card with-shadow">
+        <div class="profile-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="profile-info">
+                <div class="profile-title">
                   <p><b>How to do coffeescript OOP style coding</b></p>
                 </div>
+                <small>Notes 001 - Aug 17, 2018</small>
                 <hr />
                 <p>Using SRP(Single Responsibility Principle) style:</p>
                 <ul>
