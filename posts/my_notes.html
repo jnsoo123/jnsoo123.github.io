@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <title>JN Soo's Notes</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeRDark.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/modernizr.js"></script>
+    <script src="../js/index.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-default affix-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./my_notes.html">My Notes</a>
+        </div>
+
+        <div id="menu-center" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class='active'><a href="./my_notes.html">My Notes</a></li>
+            <li><a href="../index.html">Back to Resume Page</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container container-body">
+      <div class="profile-card with-shadow">
+        <div class="profile-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="profile-info">
+                <div class="profile-title">
+                  <p><b>How to do coffeescript OOP style coding</b></p>
+                </div>
+                <hr />
+                <p>Using SRP(Single Responsibility Principle) style:</p>
+                <ul>
+                  <li>Create a <code>constructor</code> method</li>
+                  <li>Create and call the <code>@addEvents</code> inside the constructor for the events of the element</li>
+                  <li>Create methods to separate actions and for it to be readable.</li>
+                  <li>Call the object below to run it</li>
+                </ul>
+                <pre class='brush: js'>
+                  class FooBar
+                    constructor: () ->
+                      @$elem = $('.the-element-you-need')
+
+                      @addEvents()
+
+                    addEvents: () ->
+                      @$elem.on 'click', (e) =>
+                        e.preventDefault()
+                        console.log 'Element Clicked!'
+
+                        @magicAction()
+
+                      $@elem.on 'hover', (e) =>
+                        e.preventDefault() console.log 'Element Hovered!'
+
+                      // Other Events
+
+                    // Separated Action
+                    magicAction: () ->
+                      // Do something
+                      return
+
+                  $(document).on 'load', () =>
+                    new FooBar
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type='text/javascript'>
+      SyntaxHighlighter.all()
+    </script>
+  </body>
+</html>
