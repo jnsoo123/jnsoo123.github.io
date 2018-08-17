@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushRuby.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushXml.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/modernizr.js"></script>
@@ -47,13 +48,87 @@
             <div class="col-sm-12">
               <div class="profile-info">
                 <div class="profile-title">
+                  <p><b>How to Facade Pattern in Ruby on Rails</b></p>
+                </div>
+                <small>Notes 003 - Aug 17, 2018</small>
+                <hr />
+                <p>
+                  Facade pattern is usually used in Rails' controllers to make them thin. 
+                  An example of a fat controller is using a lot of variables or instance variables to
+                  use in the view.
+                </p>
+                <pre class='brush: ruby'>
+                  class UsersController < ApplicationController
+                    def index
+                      @classmates = current_user.classroom.students
+                      @school     = current_user.school
+                      @lessons    = Lesson.where(grade: current_user.grade)
+                      @note       = Note.new
+                    end
+                  end
+                </pre>
+                <p>Where you can use the facade pattern to make the controller thinner and lesser variables</p>
+                <pre class='brush: ruby'>
+                  # user_index_facade.rb
+                  class UserIndexFacade
+                    def initialize(user)
+                      @user = user
+                    end
+
+                    def classmates
+                      user.classroom.students
+                    end
+
+                    def school
+                      user.school
+                    end
+
+                    def lessons
+                      Lesson.where(grade: user.grade)
+                    end
+
+                    def note
+                      Note.new
+                    end
+                  end
+
+                  # users_controller.rb
+                  class UsersController < ApplicationController
+                    def index
+                      @facade = UserIndexFacade.new(current_user)
+                    end
+                  end
+                </pre>
+                <p>And you can use it in the views like:</p>
+                <pre class='brush: xml'>
+                  <%= @facade.classmates %> 
+                  <%= @facade.school %>
+                  <%= @facade.lessons %>
+                  <%= form_for @facade.note do %>
+                  <% end %>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-body">
+      <div class="profile-card with-shadow">
+        <div class="profile-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="profile-info">
+                <div class="profile-title">
                   <p><b>Creating Release Tags in Github using git-flow</b></p>
                 </div>
                 <small>Notes 002 - Aug 17, 2018</small>
                 <hr />
                 <p>
                   This can be very useful especially when creating ruby gems/engines so
-                  the user can install your gem/engine via version.
+                  the user can install your gem/engine via version. Here are the cheatsheet of
+                  <a target='_blank' href='https://danielkummer.github.io/git-flow-cheatsheet/'>git-flow</a>
                 </p>
                 <p>Steps in creating release tags:</p>
                 <ul>
