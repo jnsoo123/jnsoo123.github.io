@@ -48,12 +48,117 @@
             <div class="col-sm-12">
               <div class="profile-info">
                 <div class="profile-title">
+                  <p><b>Great reads when learning Ruby on Rails</b></p>
+                </div>
+                <small>Notes 005 - Aug 30, 2018</small>
+                <br><br>
+                <span class='label label-success'>Ruby on Rails</span>
+                <hr />
+                <ul>
+                  <li>
+                    <a href='https://robots.thoughtbot.com/back-to-basics-solid' target='_blank'>
+                      SOLID Principle
+                    </a>
+                  </li>
+                  <li>
+                    <a href='https://medium.com/@joshsaintjacque/ruby-the-strategy-pattern-16c98b99b373' target='_blank'>
+                      Ruby & Strategy Pattern
+                    </a>
+                  </li>
+                  <li>
+                    <a href='https://medium.com/@joshsaintjacque/the-template-method-pattern-558f3e16879f' target='_blank'>
+                      Template Method Pattern
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-body">
+      <div class="profile-card with-shadow">
+        <div class="profile-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="profile-info">
+                <div class="profile-title">
+                  <p><b>Only use CRUD actions in controllers</b></p>
+                </div>
+                <small>Notes 004 - Aug 30, 2018</small>
+                <br><br>
+                <span class='label label-success'>Ruby on Rails</span>
+                <hr />
+                <p>This is how DHH(creator of Ruby on Rails) do with his controller.</p>
+                <p>CRUD actions are:</p>
+                <ul>
+                  <li><code>index</code></li>
+                  <li><code>show</code></li>
+                  <li><code>new</code></li>
+                  <li><code>create</code></li>
+                  <li><code>edit</code></li>
+                  <li><code>update</code></li>
+                  <li><code>destroy</code></li>
+                </ul>
+                <p>For example, you need to show a list of messages in a page and a list of
+                unread messages in another page, normally people do it this way.</p>
+                <pre class='brush: ruby'>
+                  # your_app/app/controllers/messages_controller.rb
+                  class MessagesController < ApplicationController
+                    def index
+                      @messages = Message.all
+                    end
+
+                    def unread
+                      @messages = Message.where(status: :unread)
+                    end
+                  end
+                </pre>
+                <p>Its better to create a new controller for fetches unread messages instead.
+                So basically if you need an action that is not within the CRUD action, its better to
+                make a new controller for it. Better yet, use a namespaced module for it to be
+                organized.</p>
+                <pre class='brush: ruby'>
+                  # your_app/app/controllers/messages_controller.rb
+                  class MessagesController < ApplicationController
+                    def index
+                      @messages = Message.all
+                    end
+                  end
+
+                  # your_app/app/controllers/messages/unreads_controller.rb
+                  module Messages
+                    class UnreadsController < ApplicationController
+                      def index
+                        @messages = Message.where(status: :unread)
+                      end
+                    end
+                  end
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container container-body">
+      <div class="profile-card with-shadow">
+        <div class="profile-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="profile-info">
+                <div class="profile-title">
                   <p><b>How to Facade Pattern in Ruby on Rails</b></p>
                 </div>
                 <small>Notes 003 - Aug 17, 2018</small>
+                <br><br>
+                <span class='label label-success'>Ruby on Rails</span>
                 <hr />
                 <p>
-                  Facade pattern is usually used in Rails' controllers to make them thin. 
+                  Facade pattern is usually used in Rails' controllers to make them thin.
                   An example of a fat controller is using a lot of variables or instance variables to
                   use in the view.
                 </p>
@@ -101,7 +206,7 @@
                 </pre>
                 <p>And you can use it in the views like:</p>
                 <pre class='brush: xml'>
-                  <%= @facade.classmates %> 
+                  <%= @facade.classmates %>
                   <%= @facade.school %>
                   <%= @facade.lessons %>
                   <%= form_for @facade.note do %>
@@ -124,6 +229,8 @@
                   <p><b>Creating Release Tags in Github using git-flow</b></p>
                 </div>
                 <small>Notes 002 - Aug 17, 2018</small>
+                <br><br>
+                <span class='label label-success'>Github</span>
                 <hr />
                 <p>
                   This can be very useful especially when creating ruby gems/engines so
@@ -190,6 +297,8 @@
                   <p><b>How to do coffeescript OOP style coding</b></p>
                 </div>
                 <small>Notes 001 - Aug 17, 2018</small>
+                <br><br>
+                <span class='label label-success'>Javascript</span>
                 <hr />
                 <p>Using SRP(Single Responsibility Principle) style:</p>
                 <ul>
