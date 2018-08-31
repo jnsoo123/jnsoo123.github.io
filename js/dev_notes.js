@@ -13,6 +13,7 @@ class DevNotes {
       url: 'https://post-maker.herokuapp.com/posts',
       method: 'GET',
       success: (res) => {
+        $('#loading-sign').addClass('hidden')
         $.each(res.posts, (i, post) => {
           this.appendToPage(post)
         })
